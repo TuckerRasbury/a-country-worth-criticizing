@@ -1,0 +1,146 @@
+[
+  {
+    "id": "r-001",
+    "name": "Housing First: Evidence and Policy Overview",
+    "type": "link",
+    "url": "https://endhomelessness.org/resource/housing-first/",
+    "pillars": ["housing"],
+    "date": "2024-01-15",
+    "notes": "Strong empirical case that treating housing as a precondition — not a reward — reduces chronic homelessness. HUD-endorsed model with decades of data behind it."
+  },
+  {
+    "id": "r-002",
+    "name": "The Color of Law — Richard Rothstein",
+    "type": "text",
+    "content": "Richard Rothstein's 'The Color of Law' documents how federal, state, and local governments deliberately imposed residential segregation through unconstitutional policies. Key argument: today's residential segregation is not de facto (the result of private choices) but de jure (the result of explicit government policy). This distinction matters because de jure segregation creates a constitutional obligation to remedy it.\n\nKey policies documented:\n- Federal Housing Administration explicitly refused to insure mortgages in or near Black neighborhoods (redlining)\n- Public housing was intentionally segregated in Northern cities\n- Interstate highways were deliberately routed through Black neighborhoods\n- Restrictive covenants were enforced by courts until 1948 (Shelley v. Kraemer)\n\nThis book is essential background for understanding why affordable housing policy cannot be race-neutral.",
+    "pillars": ["housing", "civil-rights"],
+    "date": "2024-02-01",
+    "notes": "Essential reading. Documents the government's direct role in creating residential segregation. Refutes the 'de facto' framing that lets policymakers off the hook."
+  },
+  {
+    "id": "r-003",
+    "name": "Wage Theft in America — Kim Bobo",
+    "type": "text",
+    "content": "Wage theft — employers stealing wages from workers — is the largest form of property crime in the United States, dwarfing robbery, burglary, and motor vehicle theft combined. Yet it receives a fraction of the enforcement resources and public attention.\n\nForms of wage theft:\n- Minimum wage violations (paying below minimum wage)\n- Overtime violations (not paying time-and-a-half)\n- Off-the-clock work (requiring unpaid prep or closing time)\n- Tip theft by employers\n- Illegal deductions from paychecks\n- Misclassifying employees as independent contractors to avoid wage laws\n\nLow-wage workers, undocumented workers, and workers of color are disproportionately victimized. The Economic Policy Institute estimates workers lose $50 billion annually to wage theft — more than all other property crime combined.",
+    "pillars": ["economic-justice"],
+    "date": "2024-01-20",
+    "notes": "The framing of wage theft as a crime — not a labor dispute — is important. The scale of the problem relative to enforcement resources is a policy scandal."
+  },
+  {
+    "id": "r-004",
+    "name": "Shelby County v. Holder (2013) — Supreme Court Opinion",
+    "type": "link",
+    "url": "https://supreme.justia.com/cases/federal/us/570/529/",
+    "pillars": ["voting-rights"],
+    "date": "2024-03-01",
+    "notes": "The decision that gutted the Voting Rights Act's preclearance requirement. Chief Justice Roberts's majority opinion argues that conditions have changed since 1965. Justice Ginsburg's dissent — 'throwing away your umbrella in a rainstorm because you are not getting wet' — is the better argument."
+  },
+  {
+    "id": "r-005",
+    "name": "Pentagon Audit Failures — GAO Summary 2023",
+    "type": "link",
+    "url": "https://www.gao.gov/products/gao-24-106056",
+    "pillars": ["military"],
+    "date": "2024-03-15",
+    "notes": "The Department of Defense has never passed a full financial audit. The 2023 attempt was the sixth consecutive failure. This is a civic scandal that receives almost no sustained press attention. Every other federal agency has passed its audit."
+  },
+  {
+    "id": "r-006",
+    "name": "The Evidence on Environmental Justice — EPA Review",
+    "type": "link",
+    "url": "https://www.epa.gov/environmentaljustice/learn-about-environmental-justice",
+    "pillars": ["environment", "civil-rights"],
+    "date": "2024-02-10",
+    "notes": "Low-income communities and communities of color are disproportionately burdened by environmental hazards. The data is clear; the policy response has been insufficient."
+  },
+  {
+    "id": "r-007",
+    "name": "The 13th — Ava DuVernay Documentary",
+    "type": "link",
+    "url": "https://www.netflix.com/title/80091741",
+    "pillars": ["criminal-justice", "civil-rights"],
+    "date": "2024-01-05",
+    "notes": "Traces the evolution of racial inequality in the United States, focusing on the 13th Amendment's exception clause ('except as a punishment for crime') and its use to maintain systems of involuntary servitude after Emancipation. Essential framing for understanding mass incarceration."
+  },
+  {
+    "id": "r-008",
+    "name": "James Baldwin — The Fire Next Time (1963)",
+    "type": "text",
+    "content": "\"I love America more than any other country in the world and, exactly for this reason, I insist on the right to criticize her perpetually.\"\n\n\"Not everything that is faced can be changed, but nothing can be changed until it is faced.\"\n\n\"The price of the liberation of the white people is the liberation of the Black people.\"\n\n\"Ignorance, allied with power, is the most ferocious enemy justice can have.\"\n\n\"People who cannot suffer can never grow up, can never discover who they are.\"\n\nFrom 'My Dungeon Shook' (letter to his nephew):\n\"This is the crime of which I accuse my country and my countrymen, and for which neither I nor time nor history will ever forgive them, that they have destroyed and are destroying hundreds of thousands of lives and do not know it and do not want to know it.\"",
+    "pillars": ["civil-rights"],
+    "date": "2024-01-01",
+    "notes": "The foundational text for this whole project. The ethic of criticizing what you love. Read once a year."
+  },
+  {
+    "id": "r-009",
+    "name": "Racial Wealth Gap Data — Federal Reserve 2023",
+    "type": "link",
+    "url": "https://www.federalreserve.gov/econres/notes/feds-notes/disparities-in-wealth-by-race-and-ethnicity-in-the-2019-survey-of-consumer-finances-20200928.html",
+    "pillars": ["economic-justice", "civil-rights"],
+    "date": "2024-02-20",
+    "notes": "White families have roughly eight times the wealth of Black families and five times the wealth of Hispanic families. This gap has not closed in 40 years. It is not accidental — it is the documented outcome of specific policy choices."
+  },
+  {
+    "id": "r-010",
+    "name": "Voting Rights Act (1965) — Full Text",
+    "type": "link",
+    "url": "https://www.justice.gov/crt/voting-rights-act-original-text",
+    "pillars": ["voting-rights"],
+    "date": "2024-03-01",
+    "notes": "The most effective civil rights legislation in American history. Worth reading in full to understand what has been systematically dismantled since 2013."
+  },
+  {
+    "id": "r-011",
+    "name": "How SNAP (Food Stamps) Affects Poverty — CBPP",
+    "type": "link",
+    "url": "https://www.cbpp.org/research/food-assistance/snap-is-linked-with-improved-nutritional-outcomes-and-lower-health-care-costs",
+    "pillars": ["economic-justice", "healthcare"],
+    "date": "2024-02-15",
+    "notes": "SNAP lifts millions out of poverty every year and is one of the most cost-effective federal programs. The political attacks on it are not based on evidence about its effectiveness."
+  },
+  {
+    "id": "r-012",
+    "name": "ACA Coverage Gains — KFF Health Policy Research",
+    "type": "link",
+    "url": "https://www.kff.org/health-reform/fact-sheet/summary-of-the-affordable-care-act/",
+    "pillars": ["healthcare"],
+    "date": "2024-02-01",
+    "notes": "The Affordable Care Act reduced the uninsured rate from 16% to under 9%. The Medicaid expansion states show significantly better health outcomes than non-expansion states. The data is in."
+  },
+  {
+    "id": "r-013",
+    "name": "College Debt and Racial Inequality — Demos",
+    "type": "link",
+    "url": "https://www.demos.org/research/race-and-student-debt",
+    "pillars": ["education", "civil-rights", "economic-justice"],
+    "date": "2024-03-10",
+    "notes": "Black students borrow more, earn less after graduation, and take longer to repay than white students. Student debt policy that ignores racial disparities in wealth accumulation is not neutral."
+  },
+  {
+    "id": "r-014",
+    "name": "DACA Program — Overview and Impact",
+    "type": "link",
+    "url": "https://www.americanimmigrationcouncil.org/research/deferred-action-childhood-arrivals-daca",
+    "pillars": ["immigration"],
+    "date": "2024-01-25",
+    "notes": "DACA recipients are, by any meaningful definition, Americans. They grew up here, work here, and contribute here. The policy uncertainty they live under is a moral failure."
+  },
+  {
+    "id": "r-015",
+    "name": "Arts and Cultural Participation — NEA Survey",
+    "type": "link",
+    "url": "https://www.arts.gov/impact/research/arts-data-profile-series/adp-10",
+    "pillars": ["arts-culture"],
+    "date": "2024-02-28",
+    "notes": "Arts participation is highest in communities with public investment in arts infrastructure. Federal funding for the arts is not a luxury; it is the scaffolding that makes participation possible beyond wealthy enclaves."
+  },
+  {
+    "id": "r-016",
+    "name": "GDPR and Data Rights — Comparative Analysis",
+    "type": "link",
+    "url": "https://epic.org/issues/data-protection/",
+    "pillars": ["tech-data"],
+    "date": "2024-03-05",
+    "notes": "The EU's General Data Protection Regulation gives citizens meaningful rights over their data. The US has no equivalent federal framework. The gap is a policy choice, not a technical limitation."
+  }
+]
