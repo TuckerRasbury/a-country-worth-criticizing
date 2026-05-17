@@ -1,0 +1,199 @@
+{
+  "pillars": [
+    {
+      "id": "housing",
+      "label": "Housing and Homelessness",
+      "order": 1,
+      "belief": "Stable housing is not a luxury. The homelessness crisis in cities like Los Angeles is a policy failure, not a personal failing. Federal investment in affordable housing and tenant protections has worked before and must be expanded. Housing is the foundation. Without it, nothing else — employment, health, education, civic participation — can be meaningfully pursued.",
+      "legislation": [
+        {
+          "name": "McKinney-Vento Homeless Assistance Act (1987)",
+          "url": "https://www.hud.gov/program_offices/comm_planning/homeless/lawsandregs/mck-vento",
+          "note": "The federal foundation for homeless assistance programs. Needs significant expansion."
+        },
+        {
+          "name": "Section 8 Housing Choice Voucher Program",
+          "url": "https://www.hud.gov/program_offices/public_indian_housing/programs/hcv",
+          "note": "Demonstrably works when funded adequately. Waiting lists measured in years are a policy choice, not an inevitability."
+        },
+        {
+          "name": "Low-Income Housing Tax Credit (LIHTC)",
+          "url": "https://www.huduser.gov/portal/datasets/lihtc.html",
+          "note": "The largest source of affordable housing financing. Works. Should be expanded."
+        }
+      ]
+    },
+    {
+      "id": "economic-justice",
+      "label": "Economic Justice and Wages",
+      "order": 2,
+      "belief": "Wage theft is one of the most widespread forms of theft in this country and one of the least prosecuted. The racial wage gap is not an accident — it is the documented outcome of policy choices over generations. Data on compensation inequality exists; the will to act on it is what is missing. An economy that allows the systematic theft of workers' wages while prosecuting shoplifters is not a just economy — it is an economy that has decided whose property matters.",
+      "legislation": [
+        {
+          "name": "Fair Labor Standards Act (1938)",
+          "url": "https://www.dol.gov/agencies/whd/flsa",
+          "note": "Established minimum wage and overtime protections. The floor. Should be treated as such."
+        },
+        {
+          "name": "Lilly Ledbetter Fair Pay Act (2009)",
+          "url": "https://www.eeoc.gov/statutes/lilly-ledbetter-fair-pay-act-2009",
+          "note": "Restored the ability of workers to challenge discriminatory pay. A floor, not a ceiling."
+        },
+        {
+          "name": "Raise the Wage Act (proposed)",
+          "url": "https://www.congress.gov/bill/117th-congress/senate-bill/53",
+          "note": "Would raise the federal minimum wage to $15/hour. Has passed the House. Should pass the Senate."
+        }
+      ]
+    },
+    {
+      "id": "voting-rights",
+      "label": "Voting Rights and Electoral Reform",
+      "order": 3,
+      "belief": "Democracy requires participation. Voter suppression is real, measurable, and targeted. Federal voting rights protections are not partisan — they are the infrastructure of self-governance. The 2013 Shelby County decision dismantled the most effective tool for protecting that infrastructure. The question is not whether suppression happens — the data is clear that it does. The question is whether we have the political will to restore the protections that proved it could be stopped.",
+      "legislation": [
+        {
+          "name": "Voting Rights Act (1965)",
+          "url": "https://www.justice.gov/crt/voting-rights-act-original-text",
+          "note": "The most effective civil rights legislation in American history. Gutted by Shelby County v. Holder (2013). Must be restored."
+        },
+        {
+          "name": "John Lewis Voting Rights Advancement Act (proposed)",
+          "url": "https://www.congress.gov/bill/117th-congress/house-bill/4",
+          "note": "Would restore the preclearance requirements dismantled by the Supreme Court. Has passed the House. Must pass the Senate."
+        },
+        {
+          "name": "National Voter Registration Act (1993)",
+          "url": "https://www.justice.gov/crt/national-voter-registration-act-1993-nvra",
+          "note": "'Motor voter' law. Reduced barriers to registration. The model for what federal voting rights legislation can accomplish."
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "label": "Education and Access",
+      "order": 4,
+      "belief": "Position forthcoming.",
+      "legislation": []
+    },
+    {
+      "id": "healthcare",
+      "label": "Healthcare",
+      "order": 5,
+      "belief": "Position forthcoming.",
+      "legislation": [
+        {
+          "name": "Affordable Care Act (2010)",
+          "url": "https://www.hhs.gov/healthcare/about-the-aca/index.html",
+          "note": "Reduced the uninsured rate from 16% to under 9%. The Medicaid expansion states have measurably better health outcomes. The data is in."
+        }
+      ]
+    },
+    {
+      "id": "criminal-justice",
+      "label": "Criminal Justice and Policing",
+      "order": 6,
+      "belief": "Position forthcoming.",
+      "legislation": [
+        {
+          "name": "First Step Act (2018)",
+          "url": "https://www.bop.gov/inmates/fsa/",
+          "note": "Bipartisan criminal justice reform reducing mandatory minimums and expanding rehabilitation programs. Proof that reform is possible."
+        }
+      ]
+    },
+    {
+      "id": "civil-rights",
+      "label": "Civil Rights and Racial Equity",
+      "order": 7,
+      "belief": "The work of the civil rights movement is unfinished. James Baldwin was right that loving this country means refusing to look away from what it has done and what it continues to do. Rigorous, data-informed criticism of American institutions is an act of civic love, not hostility. The racial wealth gap, the racial incarceration gap, the racial health gap — none of these are accidents. They are the measurable outcomes of specific policies. Naming them is the precondition for changing them.",
+      "legislation": [
+        {
+          "name": "Civil Rights Act (1964)",
+          "url": "https://www.eeoc.gov/statutes/title-vii-civil-rights-act-1964",
+          "note": "The legal foundation. Not the endpoint."
+        },
+        {
+          "name": "Fair Housing Act (1968)",
+          "url": "https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview",
+          "note": "Prohibits housing discrimination. Its enforcement has been inconsistent and insufficient."
+        },
+        {
+          "name": "Executive Order 11246 — Affirmative Action (1965)",
+          "url": "https://www.dol.gov/agencies/ofccp/executive-order-11246",
+          "note": "Required federal contractors to take affirmative action to ensure equal opportunity. The policy worked. The political opposition to it is not based on evidence."
+        }
+      ]
+    },
+    {
+      "id": "environment",
+      "label": "Environment and Climate",
+      "order": 8,
+      "belief": "Position forthcoming.",
+      "legislation": [
+        {
+          "name": "Inflation Reduction Act — Climate Provisions (2022)",
+          "url": "https://www.epa.gov/green-power-markets/inflation-reduction-act",
+          "note": "The largest climate investment in US history. Not sufficient, but a meaningful floor."
+        }
+      ]
+    },
+    {
+      "id": "military",
+      "label": "Military and Federal Spending",
+      "order": 9,
+      "belief": "The federal government's inability to pass a financial audit is a civic scandal that receives almost no public attention. How money is spent is a moral document. The Pentagon's audit failures represent a failure of accountability that should be unacceptable across party lines. We can disagree about how much to spend on defense. We cannot disagree about whether that spending should be accounted for. The answer is yes, and the fact that it isn't — after six consecutive failed audits — is a bipartisan failure that deserves sustained public attention.",
+      "legislation": [
+        {
+          "name": "Chief Financial Officers Act (1990)",
+          "url": "https://www.gao.gov/assets/cfo-act-1990.pdf",
+          "note": "Required federal agencies to undergo annual audits. The DoD has never passed one. This is a compliance failure, not a technical limitation."
+        },
+        {
+          "name": "National Defense Authorization Act — Audit Provisions",
+          "url": "https://comptroller.defense.gov/Financial-Management/Audit/",
+          "note": "Congress has mandated DoD audits. The DoD continues to fail them. The mandate is meaningless without consequences."
+        }
+      ]
+    },
+    {
+      "id": "immigration",
+      "label": "Immigration",
+      "order": 10,
+      "belief": "Position forthcoming.",
+      "legislation": [
+        {
+          "name": "Deferred Action for Childhood Arrivals (DACA, 2012)",
+          "url": "https://www.uscis.gov/DACA",
+          "note": "Protects people brought to the US as children. They are Americans in every meaningful sense. The policy uncertainty they live under is a moral failure."
+        }
+      ]
+    },
+    {
+      "id": "arts-culture",
+      "label": "Arts, Culture, and Public Life",
+      "order": 11,
+      "belief": "Position forthcoming.",
+      "legislation": [
+        {
+          "name": "National Endowment for the Arts — Authorization",
+          "url": "https://www.arts.gov/about",
+          "note": "Public arts funding is not a luxury. It is the infrastructure that makes cultural participation possible beyond wealthy enclaves."
+        }
+      ]
+    },
+    {
+      "id": "tech-data",
+      "label": "Technology and Data Rights",
+      "order": 12,
+      "belief": "Position forthcoming.",
+      "legislation": [
+        {
+          "name": "American Data Privacy and Protection Act (proposed)",
+          "url": "https://www.congress.gov/bill/117th-congress/house-bill/8152",
+          "note": "A federal data privacy framework with meaningful enforcement mechanisms. The US needs it. The EU's GDPR has shown it is possible."
+        }
+      ]
+    }
+  ]
+}
