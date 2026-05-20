@@ -1,8 +1,18 @@
 # The Ledger
 
-**[View the site →](https://tuckerrasbury.github.io/a-country-worth-criticizing/)**
-
 A personal civic technology site by Isaac D. Tucker-Rasbury, built in the Baldwin ethic: loving this country enough to criticize it, rigorously and by name.
+
+---
+
+## Live Site
+
+**[https://tuckerrasbury.github.io/a-country-worth-criticizing/](https://tuckerrasbury.github.io/a-country-worth-criticizing/)**
+
+### To deploy (one-time setup)
+
+1. **Merge this branch into `main`** — the site files need to be on `main` for GitHub Pages to serve them.
+2. **Enable GitHub Pages** — go to the repository on GitHub → **Settings** → **Pages** → under *Source*, select **Deploy from a branch** → Branch: **`main`** → Folder: **`/ (root)`** → click **Save**.
+3. **Wait about 60 seconds**, then visit the URL above. GitHub will show a green checkmark under Settings → Pages when it's live.
 
 ---
 
