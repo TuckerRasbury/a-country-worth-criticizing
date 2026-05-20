@@ -153,10 +153,20 @@ var store = (function () {
     };
   }
 
+  function resync() {
+    // Clears seed flag and resource/platform data so init() re-fetches.
+    // Drafts are intentionally preserved.
+    localStorage.removeItem(KEYS.seeded);
+    localStorage.removeItem(KEYS.resources);
+    localStorage.removeItem(KEYS.platform);
+    return init();
+  }
+
   // ── Public API ─────────────────────────────────────────────────────────
 
   return {
     init: init,
+    resync: resync,
     PILLARS: PILLARS,
     getResources: getResources,
     saveResource: saveResource,
