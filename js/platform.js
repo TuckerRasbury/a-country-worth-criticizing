@@ -6,94 +6,11 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     store.init().then(function () {
-      renderFirst100Days();
       renderPlatformSections();
       renderPillarNav();
       bindScrollSpy();
     });
   });
-
-  // ── First 100 Days ────────────────────────────────────────────────────────
-
-  function renderFirst100Days() {
-    var body = document.getElementById('first-100-body');
-    var actions = document.getElementById('first-100-actions');
-    if (!body || !actions) return;
-
-    var saved = store.get100Days();
-
-    if (saved && saved.content) {
-      body.innerHTML = renderMarkdown(saved.content);
-      body.setAttribute('contenteditable', 'true');
-      body.classList.add('is-editable');
-      actions.innerHTML =
-        '<button class="btn btn-secondary btn-sm" id="regenerate-btn" type="button">↺ Regenerate</button>' +
-        '<button class="btn btn-ghost btn-sm" id="save-100days-btn" type="button" style="margin-left:var(--space-2);">Save edits</button>';
-      document.getElementById('regenerate-btn').addEventListener('click', onRegenerate);
-      document.getElementById('save-100days-btn').addEventListener('click', onSaveEdits);
-    } else {
-      body.innerHTML = '<p class="first-100-empty">No agenda yet. Click "Generate" to draft a First 100 Days plan from your policy positions. You\'ll need your Anthropic API key set on the <a href="sources.html">Sources</a> page.</p>';
-      body.removeAttribute('contenteditable');
-      body.classList.remove('is-editable');
-      actions.innerHTML = '<button class="btn btn-primary" id="generate-btn" type="button">Generate First 100 Days →</button>';
-      document.getElementById('generate-btn').addEventListener('click', onGenerate);
-    }
-  }
-
-  function onGenerate() {
-    if (!store.getApiKey()) {
-      showToast('Add your Anthropic API key on the Sources page first.', true);
-      return;
-    }
-    generate100Days(document.getElementById('generate-btn'));
-  }
-
-  function onRegenerate() {
-    if (!store.getApiKey()) {
-      showToast('Add your Anthropic API key on the Sources page first.', true);
-      return;
-    }
-    if (!confirm('Regenerate the First 100 Days plan? Your current version will be replaced.')) return;
-    generate100Days(document.getElementById('regenerate-btn'));
-  }
-
-  function onSaveEdits() {
-    var body = document.getElementById('first-100-body');
-    if (!body) return;
-    store.save100Days(body.innerText || body.textContent || '');
-    showToast('First 100 Days saved.');
-  }
-
-  function generate100Days(triggerBtn) {
-    var positions = store.getPositions();
-    var body = document.getElementById('first-100-body');
-    var actions = document.getElementById('first-100-actions');
-
-    if (triggerBtn) {
-      triggerBtn.disabled = true;
-      triggerBtn.textContent = 'Generating…';
-    }
-    if (body) {
-      body.removeAttribute('contenteditable');
-      body.classList.remove('is-editable');
-      body.innerHTML = '<div class="first-100-generating"><div class="spinner" aria-hidden="true"></div><span>Writing your First 100 Days agenda…</span></div>';
-    }
-    if (actions) actions.innerHTML = '';
-
-    ai.generate100Days(positions)
-      .then(function (markdown) {
-        store.save100Days(markdown);
-        renderFirst100Days();
-        showToast('First 100 Days agenda generated.');
-      })
-      .catch(function (err) {
-        renderFirst100Days();
-        var msg = err.message === 'NO_POSITIONS'
-          ? 'Add position statements first — go to Sources and agree with some claims.'
-          : 'Error: ' + (err.message || 'Something went wrong.');
-        showToast(msg, true);
-      });
-  }
 
   // ── Platform Sections ─────────────────────────────────────────────────────
 
@@ -243,11 +160,9 @@
   function renderPillarNav() {
     var nav = document.getElementById('pillar-nav-list');
     if (!nav) return;
-    var first100Link = '<li><a href="#first-100-days">First 100 Days</a></li>';
-    var pillarLinks = store.PILLARS.map(function (p) {
+    nav.innerHTML = store.PILLARS.map(function (p) {
       return '<li><a href="#' + escapeAttr(p.id) + '">' + escapeHtml(p.label) + '</a></li>';
     }).join('');
-    nav.innerHTML = first100Link + pillarLinks;
     bindScrollSpy();
   }
 
@@ -268,58 +183,9 @@
       });
     }, { rootMargin: '-52px 0px -60% 0px', threshold: 0 });
 
-    document.querySelectorAll('.pillar-section, .first-100-section').forEach(function (s) {
+    document.querySelectorAll('.pillar-section').forEach(function (s) {
       observer.observe(s);
     });
-  }
-
-  // ── Markdown renderer ──────────────────────────────────────────────────────
-
-  function renderMarkdown(text) {
-    if (!text) return '';
-    var lines = String(text).split('\n');
-    var html = [];
-    var inParagraph = false;
-
-    lines.forEach(function (line) {
-      var raw = line.trimEnd();
-      var trimmed = raw.trim();
-
-      if (!trimmed) {
-        if (inParagraph) { html.push('</p>'); inParagraph = false; }
-        return;
-      }
-
-      var esc = trimmed
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-      if (/^## /.test(trimmed)) {
-        if (inParagraph) { html.push('</p>'); inParagraph = false; }
-        html.push('<h3 class="days-heading">' + inlineMd(esc.slice(3)) + '</h3>');
-        return;
-      }
-      if (/^# /.test(trimmed)) {
-        if (inParagraph) { html.push('</p>'); inParagraph = false; }
-        html.push('<h2 class="days-heading-main">' + inlineMd(esc.slice(2)) + '</h2>');
-        return;
-      }
-      if (/^[*-] /.test(trimmed)) {
-        if (inParagraph) { html.push('</p>'); inParagraph = false; }
-        html.push('<p class="days-bullet">— ' + inlineMd(esc.slice(2)) + '</p>');
-        return;
-      }
-
-      if (!inParagraph) { html.push('<p class="days-para">'); inParagraph = true; }
-      else { html.push('<br>'); }
-      html.push(inlineMd(esc));
-    });
-
-    if (inParagraph) html.push('</p>');
-    return html.join('');
-  }
-
-  function inlineMd(text) {
-    return text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   }
 
   // ── Utilities ─────────────────────────────────────────────────────────────
