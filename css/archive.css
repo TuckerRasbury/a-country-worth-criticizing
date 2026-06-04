@@ -16,6 +16,23 @@
   margin-bottom: var(--space-3);
 }
 
+/* ─── Sidebar Footer ─────────────────────────────────────────────────── */
+
+.sidebar-footer {
+  padding: var(--space-6) var(--space-5) var(--space-4);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: var(--space-4);
+}
+.sidebar-footer .btn-ghost {
+  color: var(--color-sidebar-muted);
+  width: 100%;
+  justify-content: center;
+}
+.sidebar-footer .btn-ghost:hover {
+  color: var(--color-sidebar-fg);
+  background: var(--color-sidebar-hover);
+}
+
 /* ─── Archive Main ────────────────────────────────────────────────────── */
 
 .archive-header {

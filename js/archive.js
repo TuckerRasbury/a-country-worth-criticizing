@@ -25,6 +25,7 @@
       bindFilters();
       bindAddResource();
       bindViewerModal();
+      bindResync();
     });
   });
 
@@ -401,6 +402,24 @@
     document.getElementById('add-resource-modal').close();
     renderCards();
     showToast('Resource added to the Archive.');
+  }
+
+  // ── Re-sync ─────────────────────────────────────────────────────────────
+
+  function bindResync() {
+    var btn = document.getElementById('resync-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      if (!confirm('Re-sync will reload all resources from the source file. Resources you added manually in the browser will be lost. Continue?')) return;
+      btn.disabled = true;
+      btn.textContent = 'Syncing…';
+      store.resync().then(function () {
+        renderCards();
+        btn.disabled = false;
+        btn.textContent = '↺ Re-sync archive';
+        showToast('Archive re-synced from source.');
+      });
+    });
   }
 
   // ── PDF Viewer Modal ────────────────────────────────────────────────────

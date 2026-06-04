@@ -5,8 +5,11 @@ var store = (function () {
   var KEYS = {
     resources: 'ledger_resources',
     platform:  'ledger_platform',
-    drafts:    'ledger_drafts',
-    seeded:    'ledger_seeded'
+    seeded:    'ledger_seeded',
+    positions: 'ledger_positions',
+    sources:   'ledger_sources',
+    days100:   'ledger_100days',
+    apiKey:    'ledger_api_key'
   };
 
   var PILLARS = [
@@ -37,22 +40,29 @@ var store = (function () {
       try {
         localStorage.setItem(KEYS.resources, JSON.stringify(results[0]));
         localStorage.setItem(KEYS.platform, JSON.stringify(results[1]));
-        localStorage.setItem(KEYS.drafts, JSON.stringify([]));
+        // Seed initial positions from platform.json belief statements
+        var seedPositions = (results[1].pillars || []).map(function (p) {
+          return {
+            id: 'pos-' + p.id,
+            pillar: p.id,
+            statement: (p.belief && p.belief !== 'Position forthcoming.') ? p.belief : '',
+            evidence: [],
+            counters: [],
+            updatedAt: new Date().toISOString()
+          };
+        });
+        localStorage.setItem(KEYS.positions, JSON.stringify(seedPositions));
+        localStorage.setItem(KEYS.sources, JSON.stringify([]));
         localStorage.setItem(KEYS.seeded, '1');
       } catch (e) {
         showStorageError();
       }
     }).catch(function () {
       // Seed fetch failed (e.g. file:// protocol). Start with empty data.
-      if (!localStorage.getItem(KEYS.resources)) {
-        localStorage.setItem(KEYS.resources, JSON.stringify([]));
-      }
-      if (!localStorage.getItem(KEYS.platform)) {
-        localStorage.setItem(KEYS.platform, JSON.stringify({ pillars: [] }));
-      }
-      if (!localStorage.getItem(KEYS.drafts)) {
-        localStorage.setItem(KEYS.drafts, JSON.stringify([]));
-      }
+      if (!localStorage.getItem(KEYS.resources))  localStorage.setItem(KEYS.resources,  JSON.stringify([]));
+      if (!localStorage.getItem(KEYS.platform))   localStorage.setItem(KEYS.platform,   JSON.stringify({ pillars: [] }));
+      if (!localStorage.getItem(KEYS.positions))  localStorage.setItem(KEYS.positions,  JSON.stringify([]));
+      if (!localStorage.getItem(KEYS.sources))    localStorage.setItem(KEYS.sources,    JSON.stringify([]));
     });
   }
 
@@ -78,7 +88,6 @@ var store = (function () {
 
   function showStorageError(msg) {
     var message = msg || 'Storage error. Your browser storage may be full.';
-    // Toast is defined in nav.js; fall back to console if not available
     if (typeof window.showToast === 'function') {
       window.showToast(message, true);
     } else {
@@ -86,7 +95,7 @@ var store = (function () {
     }
   }
 
-  // ── Resources ──────────────────────────────────────────────────────────
+  // ── Resources (legacy — kept for backwards compat) ─────────────────────
 
   function getResources() {
     return read(KEYS.resources) || [];
@@ -110,30 +119,77 @@ var store = (function () {
     return write(KEYS.resources, resources);
   }
 
-  // ── Drafts ─────────────────────────────────────────────────────────────
+  // ── Positions ──────────────────────────────────────────────────────────
 
-  function getDrafts() {
-    return read(KEYS.drafts) || [];
+  function getPositions() {
+    return read(KEYS.positions) || [];
   }
 
-  function saveDraft(draft) {
-    var drafts = getDrafts();
-    var idx = drafts.findIndex(function (d) { return d.id === draft.id; });
-    draft.updated = new Date().toISOString();
+  function getPosition(pillarId) {
+    return getPositions().find(function (p) { return p.pillar === pillarId; }) || null;
+  }
+
+  function savePosition(pos) {
+    var positions = getPositions();
+    var idx = positions.findIndex(function (p) { return p.pillar === pos.pillar; });
+    pos.updatedAt = new Date().toISOString();
     if (idx >= 0) {
-      drafts[idx] = draft;
+      positions[idx] = pos;
     } else {
-      drafts.unshift(draft);
+      positions.push(pos);
     }
-    return write(KEYS.drafts, drafts);
+    return write(KEYS.positions, positions);
   }
 
-  function deleteDraft(id) {
-    var drafts = getDrafts().filter(function (d) { return d.id !== id; });
-    return write(KEYS.drafts, drafts);
+  // ── Sources ────────────────────────────────────────────────────────────
+
+  function getSources() {
+    return read(KEYS.sources) || [];
   }
 
-  // ── Platform ───────────────────────────────────────────────────────────
+  function saveSource(src) {
+    var sources = getSources();
+    var idx = sources.findIndex(function (s) { return s.id === src.id; });
+    if (idx >= 0) {
+      sources[idx] = src;
+    } else {
+      src.id = src.id || generateId('s');
+      src.addedAt = src.addedAt || new Date().toISOString();
+      sources.unshift(src);
+    }
+    return write(KEYS.sources, sources);
+  }
+
+  function deleteSource(id) {
+    var sources = getSources().filter(function (s) { return s.id !== id; });
+    return write(KEYS.sources, sources);
+  }
+
+  // ── First 100 Days ─────────────────────────────────────────────────────
+
+  function get100Days() {
+    return read(KEYS.days100) || null;
+  }
+
+  function save100Days(text) {
+    return write(KEYS.days100, { content: text, savedAt: new Date().toISOString() });
+  }
+
+  // ── API Key ────────────────────────────────────────────────────────────
+
+  function getApiKey() {
+    return localStorage.getItem(KEYS.apiKey) || '';
+  }
+
+  function saveApiKey(key) {
+    localStorage.setItem(KEYS.apiKey, key);
+  }
+
+  function clearApiKey() {
+    localStorage.removeItem(KEYS.apiKey);
+  }
+
+  // ── Platform (seed data) ───────────────────────────────────────────────
 
   function getPlatform() {
     return read(KEYS.platform) || { pillars: [] };
@@ -145,10 +201,21 @@ var store = (function () {
     return (prefix || 'id') + '-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   }
 
+  function resync() {
+    localStorage.removeItem(KEYS.seeded);
+    localStorage.removeItem(KEYS.resources);
+    localStorage.removeItem(KEYS.platform);
+    localStorage.removeItem(KEYS.positions);
+    localStorage.removeItem(KEYS.sources);
+    localStorage.removeItem(KEYS.days100);
+    return init();
+  }
+
   function exportData() {
     return {
-      resources: getResources(),
-      drafts: getDrafts(),
+      positions: getPositions(),
+      sources: getSources(),
+      days100: get100Days(),
       exportedAt: new Date().toISOString()
     };
   }
@@ -157,14 +224,30 @@ var store = (function () {
 
   return {
     init: init,
+    resync: resync,
     PILLARS: PILLARS,
+    // Resources (legacy)
     getResources: getResources,
     saveResource: saveResource,
     deleteResource: deleteResource,
-    getDrafts: getDrafts,
-    saveDraft: saveDraft,
-    deleteDraft: deleteDraft,
+    // Positions
+    getPositions: getPositions,
+    getPosition: getPosition,
+    savePosition: savePosition,
+    // Sources
+    getSources: getSources,
+    saveSource: saveSource,
+    deleteSource: deleteSource,
+    // First 100 Days
+    get100Days: get100Days,
+    save100Days: save100Days,
+    // API key
+    getApiKey: getApiKey,
+    saveApiKey: saveApiKey,
+    clearApiKey: clearApiKey,
+    // Platform seed
     getPlatform: getPlatform,
+    // Utilities
     generateId: generateId,
     exportData: exportData
   };

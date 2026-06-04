@@ -6,18 +6,16 @@
     '<nav class="site-nav" role="navigation" aria-label="Site navigation">',
     '  <a class="nav-brand" href="index.html">The Ledger</a>',
     '  <div class="nav-links">',
-    '    <a href="index.html" data-page="archive">Archive</a>',
-    '    <a href="builder.html" data-page="builder">Builder</a>',
-    '    <a href="platform.html" data-page="platform">Platform</a>',
+    '    <a href="sources.html" data-page="sources">Sources</a>',
+    '    <a href="index.html" data-page="platform">Platform</a>',
     '  </div>',
     '</nav>'
   ].join('\n');
 
   function getActivePage() {
     var path = window.location.pathname;
-    if (path.endsWith('builder.html')) return 'builder';
-    if (path.endsWith('platform.html')) return 'platform';
-    return 'archive';
+    if (path.endsWith('sources.html')) return 'sources';
+    return 'platform';
   }
 
   function injectNav() {

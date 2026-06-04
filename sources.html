@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sources — analyze articles and build your policy positions with AI-assisted claim extraction.">
+  <title>Sources — The Ledger</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sources.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <div id="api-key-banner" class="api-key-banner" style="display:none;" role="alert">
+    <p>
+      <strong>Anthropic API key required.</strong>
+      Add your key to enable AI claim extraction.
+      Your key is stored locally in your browser and never sent anywhere except Anthropic.
+    </p>
+    <form class="api-key-form" id="api-key-form" novalidate>
+      <input class="api-key-input" id="api-key-input" type="password"
+        placeholder="sk-ant-…" autocomplete="off" aria-label="Anthropic API key">
+      <button class="btn btn-primary btn-sm" type="submit">Save key</button>
+    </form>
+  </div>
+
+  <div class="sources-layout">
+
+    <!-- Main intake + history -->
+    <main class="sources-main">
+
+      <div class="sources-header">
+        <h1 class="sources-title">Sources</h1>
+        <p class="sources-subtitle">Drop a URL or paste text. Claude extracts the key claims — you decide what you agree with. Agreed claims become evidence for your positions on the Platform.</p>
+      </div>
+
+      <!-- Intake panel -->
+      <div class="intake-panel" id="intake-panel">
+        <div class="intake-tabs" role="tablist" aria-label="Source input method">
+          <button class="intake-tab active" role="tab" aria-selected="true"
+            aria-controls="tab-url" data-tab="url" id="tab-btn-url" type="button">URL</button>
+          <button class="intake-tab" role="tab" aria-selected="false"
+            aria-controls="tab-text" data-tab="text" id="tab-btn-text" type="button">Paste Text</button>
+        </div>
+        <div class="intake-body">
+          <div id="tab-url" role="tabpanel" aria-labelledby="tab-btn-url">
+            <input type="url" id="source-url" placeholder="https://…"
+              aria-label="URL to analyze" autocomplete="url">
+            <p class="intake-hint">Claude will fetch the page and extract key claims. If the URL can't be fetched automatically, you'll be prompted to paste the text instead.</p>
+          </div>
+          <div id="tab-text" role="tabpanel" aria-labelledby="tab-btn-text" style="display:none;">
+            <textarea id="source-text" placeholder="Paste an article, report, excerpt, or any text passage…"
+              aria-label="Text to analyze"></textarea>
+            <p class="intake-hint">Claude will extract 4–6 substantive claims or policy arguments from this text.</p>
+          </div>
+          <div class="intake-footer">
+            <input class="intake-name-input" id="source-name" type="text"
+              placeholder="Source name (optional)" aria-label="Source name">
+            <button class="btn btn-primary" id="analyze-btn" type="button">Analyze →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extraction status -->
+      <div class="extraction-status" id="extraction-status" style="display:none;" aria-live="polite" aria-atomic="true">
+        <div class="spinner" aria-hidden="true"></div>
+        <span id="extraction-message">Fetching page…</span>
+      </div>
+
+      <!-- Claims section -->
+      <div class="claims-section" id="claims-section" style="display:none;">
+        <p class="claims-heading">Claims Extracted — Do You Agree?</p>
+        <p class="claims-source-label" id="claims-source-label"></p>
+        <div id="claims-list" aria-label="Extracted claims"></div>
+        <div style="display:flex; gap: var(--space-3); margin-top: var(--space-6); flex-wrap: wrap;">
+          <button class="btn btn-primary" id="save-source-btn" type="button">Save Source</button>
+          <button class="btn btn-secondary" id="discard-source-btn" type="button">Discard</button>
+        </div>
+      </div>
+
+      <!-- Source history -->
+      <div class="source-history" id="source-history" style="display:none;">
+        <p class="source-history-heading">Analyzed Sources</p>
+        <div id="source-list"></div>
+      </div>
+
+    </main>
+
+    <!-- Positions sidebar -->
+    <aside class="sources-sidebar" aria-label="Your current positions">
+      <p class="sidebar-heading">Your Positions</p>
+      <div id="positions-preview">
+        <p style="font-family: var(--font-sans); font-size: var(--text-sm); color: var(--color-muted); line-height: 1.5;">
+          Agree with extracted claims to start building your positions.
+        </p>
+      </div>
+      <a href="index.html" class="sidebar-link">View Full Platform →</a>
+    </aside>
+
+  </div>
+
+  <script src="js/store.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/sources.js"></script>
+</body>
+</html>
