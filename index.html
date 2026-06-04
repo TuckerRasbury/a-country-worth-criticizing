@@ -3,166 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Archive — a personal research library of resources on policy, civic life, and the work of good governance.">
-  <title>Archive — The Ledger</title>
+  <meta name="description" content="The Platform — Isaac D. Tucker-Rasbury's policy positions and First 100 Days agenda, built from research and conviction.">
+  <title>Platform — The Ledger</title>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/archive.css">
+  <link rel="stylesheet" href="css/platform.css">
 </head>
 <body>
   <div id="site-nav"></div>
 
-  <div class="layout-archive">
-    <!-- Left Sidebar -->
-    <aside class="sidebar" aria-label="Policy pillars">
-      <div class="archive-sidebar-header">
-        <p class="section-label">Policy Pillars</p>
-      </div>
-      <ul class="pillar-list" id="pillar-list" role="list">
-        <li>
-          <button type="button" class="active" data-pillar="all">All Resources</button>
-        </li>
-        <!-- Pillar items injected by archive.js -->
+  <div class="layout-platform">
+
+    <!-- Left: Sticky Pillar Nav -->
+    <nav class="pillar-nav" aria-label="Platform navigation">
+      <p class="pillar-nav-header">On This Page</p>
+      <ul class="pillar-nav-list" id="pillar-nav-list" role="list">
+        <li><a href="#first-100-days">First 100 Days</a></li>
+        <!-- Pillar links rendered by platform.js -->
       </ul>
-      <div class="sidebar-footer">
-        <button class="btn btn-ghost btn-sm" id="resync-btn" type="button"
-          title="Re-load all resources from the source file">↺ Re-sync archive</button>
-      </div>
-    </aside>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="main" id="main" aria-label="Resource archive">
-      <div class="archive-header">
-        <h1 class="archive-title" id="archive-title">The Archive</h1>
-        <button class="btn btn-primary" id="add-resource-btn" type="button">+ Add Resource</button>
-      </div>
+    <!-- Main: Platform Content -->
+    <main class="platform-content" aria-label="Platform">
 
-      <div class="filter-bar" role="search">
-        <div class="search-input-wrap">
-          <input
-            class="search-input"
-            id="search-input"
-            type="search"
-            placeholder="Search names and notes…"
-            aria-label="Search resources"
-            autocomplete="off"
-          >
+      <header class="platform-intro">
+        <h1 class="site-title">The Platform</h1>
+        <p class="site-byline">Isaac D. Tucker-Rasbury — June 2026</p>
+        <p class="site-statement">
+          These are not hypothetical positions. They are what I actually believe —
+          grounded in evidence I have read and chosen to stand behind.
+          The question is not electability. The question is: what is right,
+          and are you willing to say so plainly.
+        </p>
+      </header>
+
+      <!-- First 100 Days Section -->
+      <section class="first-100-section pillar-section" id="first-100-days" aria-label="First 100 Days">
+        <header class="pillar-section-header">
+          <div>
+            <p class="pillar-label">Agenda</p>
+            <h2 class="pillar-name">First 100 Days</h2>
+          </div>
+          <div id="first-100-actions">
+            <!-- Rendered by platform.js -->
+          </div>
+        </header>
+        <div id="first-100-body" class="first-100-body">
+          <!-- Rendered by platform.js -->
         </div>
-        <select class="filter-select" id="filter-type" aria-label="Filter by type">
-          <option value="all">All types</option>
-          <option value="link">Links</option>
-          <option value="pdf">PDFs</option>
-          <option value="text">Text</option>
-        </select>
-        <select class="filter-select" id="filter-date" aria-label="Filter by date">
-          <option value="all">All time</option>
-          <option value="thisyear">This year</option>
-          <option value="thismonth">This month</option>
-        </select>
-        <span class="resource-count" id="resource-count" aria-live="polite"></span>
+      </section>
+
+      <!-- Pillar Positions -->
+      <div id="platform-sections">
+        <!-- Rendered by platform.js -->
       </div>
 
-      <div class="card-grid" id="card-grid" role="list" aria-label="Resources">
-        <!-- Cards rendered by archive.js -->
-      </div>
     </main>
   </div>
 
-  <!-- Add Resource Modal -->
-  <dialog id="add-resource-modal" aria-labelledby="add-modal-title">
-    <div class="dialog-header">
-      <h2 class="dialog-title" id="add-modal-title">Add a Resource</h2>
-      <button class="dialog-close" id="modal-close" aria-label="Close dialog">&times;</button>
-    </div>
-    <div class="dialog-body">
-      <form id="add-resource-form" novalidate>
-        <!-- Step 1: Type selection -->
-        <div class="form-group">
-          <p class="form-label">Resource type</p>
-          <div class="type-selector" role="group" aria-label="Choose resource type">
-            <div class="type-card" data-type="link" role="button" tabindex="0" aria-pressed="false">
-              <span class="type-icon" aria-hidden="true">↗</span>
-              <span class="type-name">Link</span>
-              <span class="type-desc">A URL to a web page, article, or online document</span>
-            </div>
-            <div class="type-card" data-type="pdf" role="button" tabindex="0" aria-pressed="false">
-              <span class="type-icon" aria-hidden="true">PDF</span>
-              <span class="type-name">PDF</span>
-              <span class="type-desc">Upload a PDF document (max 750 KB)</span>
-            </div>
-            <div class="type-card" data-type="text" role="button" tabindex="0" aria-pressed="false">
-              <span class="type-icon" aria-hidden="true">¶</span>
-              <span class="type-name">Text</span>
-              <span class="type-desc">Paste a passage, excerpt, or note</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 2: Intake fields (shown after type selection) -->
-        <div id="intake-link" class="intake-field" style="display:none;">
-          <div class="form-group">
-            <label class="form-label" for="intake-url">URL</label>
-            <input class="form-input" id="intake-url" type="url" placeholder="https://…" autocomplete="url">
-          </div>
-        </div>
-
-        <div id="intake-pdf" class="intake-field" style="display:none;">
-          <div class="form-group">
-            <label class="form-label" for="intake-pdf-file">PDF file <span style="font-weight:normal;text-transform:none;letter-spacing:0;">(max 750 KB)</span></label>
-            <input class="form-input" id="intake-pdf-file" type="file" accept=".pdf,application/pdf">
-          </div>
-        </div>
-
-        <div id="intake-text" class="intake-field" style="display:none;">
-          <div class="form-group">
-            <label class="form-label" for="intake-text-content">Text / excerpt</label>
-            <textarea class="form-textarea" id="intake-text-content" rows="6" placeholder="Paste the text or excerpt here…"></textarea>
-          </div>
-        </div>
-
-        <!-- Shared metadata (shown after type selection) -->
-        <div id="modal-metadata" style="display:none;">
-          <div class="form-group">
-            <label class="form-label" for="resource-name">Resource name <span aria-hidden="true">*</span></label>
-            <input class="form-input" id="resource-name" type="text" placeholder="e.g. Housing First Research Overview" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="resource-date">Date added</label>
-            <input class="form-input" id="resource-date" type="date">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="resource-notes">Summary / notes</label>
-            <textarea class="form-textarea" id="resource-notes" rows="3" placeholder="Why does this matter? What's the key argument or finding?"></textarea>
-          </div>
-          <div class="form-group">
-            <p class="form-label">Policy pillars</p>
-            <div class="checkbox-grid" id="pillar-checkboxes" role="group" aria-label="Select policy pillars">
-              <!-- Checkboxes rendered by archive.js -->
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="dialog-footer">
-      <button class="btn btn-secondary" type="button" id="modal-close-footer" onclick="document.getElementById('add-resource-modal').close()">Cancel</button>
-      <button class="btn btn-primary" type="submit" form="add-resource-form">Save resource</button>
-    </div>
-  </dialog>
-
-  <!-- Viewer Modal (PDF / text) -->
-  <dialog id="viewer-modal" aria-labelledby="viewer-title">
-    <div class="dialog-header">
-      <h2 class="dialog-title" id="viewer-title"></h2>
-      <button class="dialog-close" id="viewer-close" aria-label="Close viewer">&times;</button>
-    </div>
-    <div class="dialog-body" id="viewer-body">
-    </div>
-  </dialog>
-
   <script src="js/store.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/archive.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/platform.js"></script>
 </body>
 </html>
